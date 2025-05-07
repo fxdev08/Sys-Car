@@ -1,3 +1,4 @@
+
 import React from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -59,7 +60,7 @@ const Index: React.FC = () => {
       <main className="flex-1">
         {/* Banner Principal */}
         <Banner 
-          title="Mega Feirão - Milhares de ofertas com as melhores condições"
+          title="SYS Car - Milhares de ofertas com as melhores condições"
           subtitle="Os melhores preços e condições você encontra aqui"
         />
         
