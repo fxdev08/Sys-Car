@@ -25,7 +25,7 @@ const VehicleDetail: React.FC = () => {
     sellerSince: '2015',
     sellerVerified: true,
     images: [
-      'https://images.unsplash.com/photo-1609796887304-4acc974a4649?q=80&w=1664&auto=format&fit=crop',
+      'https://i.postimg.cc/fb0q1x5H/111024-lancer02.jpg',
       'https://images.unsplash.com/photo-1547245324-d777c6f05e80?q=80&w=1770&auto=format&fit=crop',
       'https://images.unsplash.com/photo-1494905998402-395d579af36f?q=80&w=1770&auto=format&fit=crop'
     ],
