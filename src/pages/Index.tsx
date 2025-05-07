@@ -114,7 +114,7 @@ const Index: React.FC = () => {
           <h2 className="text-2xl font-bold text-brand-gray-700 mb-6">Marcas populares</h2>
           
           <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-4">
-            {['Volkswagen', 'Chevrolet', 'Fiat', 'Toyota', 'Ford', 'Honda'].map(brand => (
+            {['Volkswagen', 'Chevrolet', 'Fiat', 'Toyota', 'Ford', 'Ferrari'].map(brand => (
               <a 
                 key={brand} 
                 href="#" 

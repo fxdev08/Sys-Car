@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Search } from 'lucide-react';
 
@@ -45,6 +44,7 @@ const SearchFilter: React.FC = () => {
               <option value="chevrolet">Chevrolet</option>
               <option value="ford">Ford</option>
               <option value="toyota">Toyota</option>
+              <option value="ferrari">Ferrari</option>
             </select>
           </div>
           
