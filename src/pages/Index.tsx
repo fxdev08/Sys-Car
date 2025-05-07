@@ -42,7 +42,7 @@ const featuredCars = [
   },
   {
     id: 4,
-    imageUrl: 'https://images.unsplash.com/photo-1609796887304-4acc974a4649?q=80&w=1664&auto=format&fit=crop',
+    imageUrl: 'https://i.postimg.cc/fb0q1x5H/111024-lancer02.jpg?q=80&w=1664&auto=format&fit=crop',
     brand: 'MITSUBISHI',
     model: 'LANCER',
     year: '2013/2013',
