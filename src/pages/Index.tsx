@@ -12,7 +12,7 @@ import { Calculator, MessageSquare, Car } from 'lucide-react';
 const featuredCars = [
   {
     id: 1,
-    imageUrl: 'https://images.unsplash.com/photo-1551830820-330a71b99659?q=80&w=1650&auto=format&fit=crop',
+    imageUrl: 'https://i.postimg.cc/7LWDnMhm/Volkswagen-Gol-Highline-2023-53708009248-cropped.jpg',
     brand: 'VOLKSWAGEN',
     model: 'GOL',
     year: '2020/2021',
@@ -22,7 +22,7 @@ const featuredCars = [
   },
   {
     id: 2,
-    imageUrl: 'https://images.unsplash.com/photo-1614200179396-2bdb77872df5?q=80&w=1664&auto=format&fit=crop',
+    imageUrl: 'https://i.postimg.cc/3NMTP8gG/onix-rs-01.jpg',
     brand: 'CHEVROLET',
     model: 'ONIX',
     year: '2019/2020',
@@ -32,7 +32,7 @@ const featuredCars = [
   },
   {
     id: 3,
-    imageUrl: 'https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?q=80&w=1770&auto=format&fit=crop',
+    imageUrl: 'https://i.postimg.cc/85fGKJrD/360-F-309590738-R34phqyy-Tl-Qtj-Zjfs-I2mcg-S3-LNfleocw.jpg',
     brand: 'TOYOTA',
     model: 'COROLLA',
     year: '2022/2022',
