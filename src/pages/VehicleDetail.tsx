@@ -25,9 +25,9 @@ const VehicleDetail: React.FC = () => {
     sellerSince: '2015',
     sellerVerified: true,
     images: [
-      'https://images.unsplash.com/photo-1580273916550-e323be2ae537?q=80&w=1664&auto=format&fit=crop',
-      'https://images.unsplash.com/photo-1619284554746-90bd1b12e9a6?q=80&w=1760&auto=format&fit=crop',
-      'https://images.unsplash.com/photo-1591740436808-8eee5369c779?q=80&w=1778&auto=format&fit=crop'
+      'https://images.unsplash.com/photo-1609796887304-4acc974a4649?q=80&w=1664&auto=format&fit=crop',
+      'https://images.unsplash.com/photo-1547245324-d777c6f05e80?q=80&w=1770&auto=format&fit=crop',
+      'https://images.unsplash.com/photo-1494905998402-395d579af36f?q=80&w=1770&auto=format&fit=crop'
     ],
     features: [
       'Ar condicionado',

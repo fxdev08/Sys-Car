@@ -1,4 +1,3 @@
-
 import React from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -12,7 +11,7 @@ import { Calculator, MessageSquare, Car } from 'lucide-react';
 const featuredCars = [
   {
     id: 1,
-    imageUrl: 'https://images.unsplash.com/photo-1583121274602-3e2820c69888?q=80&w=1650&auto=format&fit=crop',
+    imageUrl: 'https://images.unsplash.com/photo-1551830820-330a71b99659?q=80&w=1650&auto=format&fit=crop',
     brand: 'VOLKSWAGEN',
     model: 'GOL',
     year: '2020/2021',
@@ -22,7 +21,7 @@ const featuredCars = [
   },
   {
     id: 2,
-    imageUrl: 'https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?q=80&w=1664&auto=format&fit=crop',
+    imageUrl: 'https://images.unsplash.com/photo-1614200179396-2bdb77872df5?q=80&w=1664&auto=format&fit=crop',
     brand: 'CHEVROLET',
     model: 'ONIX',
     year: '2019/2020',
@@ -32,7 +31,7 @@ const featuredCars = [
   },
   {
     id: 3,
-    imageUrl: 'https://images.unsplash.com/photo-1552519507-da3b142c6e3d?q=80&w=1770&auto=format&fit=crop',
+    imageUrl: 'https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?q=80&w=1770&auto=format&fit=crop',
     brand: 'TOYOTA',
     model: 'COROLLA',
     year: '2022/2022',
@@ -42,7 +41,7 @@ const featuredCars = [
   },
   {
     id: 4,
-    imageUrl: 'https://images.unsplash.com/photo-1580273916550-e323be2ae537?q=80&w=1664&auto=format&fit=crop',
+    imageUrl: 'https://images.unsplash.com/photo-1609796887304-4acc974a4649?q=80&w=1664&auto=format&fit=crop',
     brand: 'MITSUBISHI',
     model: 'LANCER',
     year: '2013/2013',
