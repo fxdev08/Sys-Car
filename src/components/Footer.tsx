@@ -9,7 +9,7 @@ const Footer: React.FC = () => {
           <div>
             <h3 className="text-xl font-bold mb-4">MotorBrasil</h3>
             <p className="text-brand-gray-200">
-              Seu portal para compra e venda de veículos seminovos e usados com as melhores condições.
+              Seu portal para compra e venda de veículos novos e seminovos com as melhores condições.
             </p>
           </div>
           
