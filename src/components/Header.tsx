@@ -11,7 +11,7 @@ const Header: React.FC = () => {
       <div className="container mx-auto px-4 py-3 flex items-center justify-between">
         {/* Logo */}
         <Link to="/" className="flex items-center">
-          <span className="text-brand-red font-bold text-2xl">MotorBrasil</span>
+          <span className="text-brand-red font-bold text-2xl">SYS Car</span>
         </Link>
 
         {/* Desktop Navigation */}
