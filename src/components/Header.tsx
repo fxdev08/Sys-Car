@@ -39,7 +39,7 @@ const Header: React.FC = () => {
             <User size={22} />
           </button>
           <button className="bg-brand-red hover:bg-red-700 text-white px-4 py-2 rounded-md font-medium transition">
-            Anunciar
+            Criar conta
           </button>
         </div>
 
@@ -74,7 +74,7 @@ const Header: React.FC = () => {
                 Minha Conta
               </Link>
               <button className="bg-brand-red hover:bg-red-700 text-white px-4 py-2 rounded-md font-medium transition">
-                Anunciar
+                Criar conta
               </button>
             </div>
           </div>

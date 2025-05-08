@@ -6,13 +6,109 @@ import Footer from '@/components/Footer';
 import BrandLogo from '@/components/BrandLogo';
 import { Calculator, MessageSquare, Share2, Heart, Check } from 'lucide-react';
 
-const VehicleDetail: React.FC = () => {
-  // Em um cenário real, buscaríamos os dados baseados no ID
-  const { id } = useParams<{ id: string }>();
-  
-  // Dados simulados do veículo
-  const vehicle = {
-    id: Number(id),
+// Base de dados de veículos
+const vehiclesData = [
+  {
+    id: 1,
+    imageUrl: 'https://i.postimg.cc/7LWDnMhm/Volkswagen-Gol-Highline-2023-53708009248-cropped.jpg',
+    brand: 'VOLKSWAGEN',
+    model: 'GOL',
+    year: '2020/2021',
+    km: '45.000',
+    motor: '1.6 MSI FLEX MANUAL',
+    price: 'R$ 58.900,00',
+    location: 'São Paulo, SP',
+    sellerName: 'Auto Premium São Paulo',
+    sellerRating: 4.7,
+    sellerSince: '2017',
+    sellerVerified: true,
+    images: [
+      'https://i.postimg.cc/7LWDnMhm/Volkswagen-Gol-Highline-2023-53708009248-cropped.jpg',
+      'https://images.unsplash.com/photo-1599912027611-484b9fc447af?q=80&w=1769&auto=format&fit=crop',
+      'https://images.unsplash.com/photo-1617469767053-8f4592b8992f?q=80&w=1771&auto=format&fit=crop'
+    ],
+    features: [
+      'Ar condicionado',
+      'Direção hidráulica',
+      'Vidros elétricos',
+      'Travas elétricas',
+      'Airbag',
+      'Alarme',
+      'Som',
+      'Sensor de estacionamento'
+    ],
+    fipePrice: 'R$ 57.600,00',
+    fipeVariation: '+2,2%'
+  },
+  {
+    id: 2,
+    imageUrl: 'https://i.postimg.cc/3NMTP8gG/onix-rs-01.jpg',
+    brand: 'CHEVROLET',
+    model: 'ONIX',
+    year: '2019/2020',
+    km: '38.000',
+    motor: '1.0 TURBO FLEX LT AUTOMÁTICO',
+    price: 'R$ 62.500,00',
+    location: 'Rio de Janeiro, RJ',
+    sellerName: 'Nova Era Veículos',
+    sellerRating: 4.9,
+    sellerSince: '2019',
+    sellerVerified: true,
+    images: [
+      'https://i.postimg.cc/3NMTP8gG/onix-rs-01.jpg',
+      'https://images.unsplash.com/photo-1547731269-e45f2241046e?q=80&w=1769&auto=format&fit=crop',
+      'https://images.unsplash.com/photo-1560802891-2a9cf3945974?q=80&w=1974&auto=format&fit=crop'
+    ],
+    features: [
+      'Ar condicionado',
+      'Direção elétrica',
+      'Vidros elétricos',
+      'Travas elétricas',
+      'Airbag duplo',
+      'Alarme',
+      'Multimídia',
+      'Câmera de ré'
+    ],
+    fipePrice: 'R$ 60.800,00',
+    fipeVariation: '+2,8%'
+  },
+  {
+    id: 3,
+    imageUrl: 'https://i.postimg.cc/85fGKJrD/360-F-309590738-R34phqyy-Tl-Qtj-Zjfs-I2mcg-S3-LNfleocw.jpg',
+    brand: 'TOYOTA',
+    model: 'COROLLA',
+    year: '2022/2022',
+    km: '15.000',
+    motor: '2.0 VVT-iE FLEX XEI DIRECT SHIFT',
+    price: 'R$ 122.900,00',
+    location: 'Belo Horizonte, MG',
+    sellerName: 'Toyota Nippon',
+    sellerRating: 4.8,
+    sellerSince: '2010',
+    sellerVerified: true,
+    images: [
+      'https://i.postimg.cc/85fGKJrD/360-F-309590738-R34phqyy-Tl-Qtj-Zjfs-I2mcg-S3-LNfleocw.jpg',
+      'https://images.unsplash.com/photo-1553440569-bcc63803a83d?q=80&w=1025&auto=format&fit=crop',
+      'https://images.unsplash.com/photo-1550355291-bbee04a92027?q=80&w=1036&auto=format&fit=crop'
+    ],
+    features: [
+      'Ar condicionado digital',
+      'Direção elétrica',
+      'Vidros elétricos',
+      'Travas elétricas',
+      'Airbag 7',
+      'Alarme',
+      'Central multimídia',
+      'Câmera 360°',
+      'Bancos em couro',
+      'Teto solar'
+    ],
+    fipePrice: 'R$ 121.500,00',
+    fipeVariation: '+1,2%'
+  },
+  {
+    id: 4,
+    imageUrl: 'https://i.postimg.cc/fb0q1x5H/111024-lancer02.jpg',
     brand: 'MITSUBISHI',
     model: 'LANCER',
     year: '2013/2013',
@@ -41,7 +137,15 @@ const VehicleDetail: React.FC = () => {
     ],
     fipePrice: 'R$ 61.425,00',
     fipeVariation: '+2,4%'
-  };
+  }
+];
+
+const VehicleDetail: React.FC = () => {
+  const { id } = useParams<{ id: string }>();
+  const vehicleId = Number(id);
+  
+  // Encontra o veículo com o ID correspondente ou usa o primeiro como fallback
+  const vehicle = vehiclesData.find(v => v.id === vehicleId) || vehiclesData[0];
   
   return (
     <div className="min-h-screen flex flex-col bg-brand-gray-100">
@@ -217,7 +321,7 @@ const VehicleDetail: React.FC = () => {
                 
                 <div className="mt-5 pt-5 border-t border-brand-gray-200">
                   <p className="text-center text-sm text-brand-gray-500">
-                    Viu este anúncio no MotorBrasil?
+                    Viu este anúncio no Sys Car?
                   </p>
                 </div>
               </div>
