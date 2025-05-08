@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import { Search, User, Menu, X } from 'lucide-react';
+import { Search, User, Menu, X, Car } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const Header: React.FC = () => {
@@ -11,7 +11,8 @@ const Header: React.FC = () => {
       <div className="container mx-auto px-4 py-3 flex items-center justify-between">
         {/* Logo */}
         <Link to="/" className="flex items-center">
-          <span className="text-brand-red font-bold text-2xl">SYS Car</span>
+          <Car size={24} className="mr-2 text-black" />
+          <span className="text-black font-bold text-2xl">SYS Car</span>
         </Link>
 
         {/* Desktop Navigation */}
@@ -38,7 +39,7 @@ const Header: React.FC = () => {
           <button className="p-2 text-brand-gray-600 hover:text-brand-red rounded-full hover:bg-brand-gray-100">
             <User size={22} />
           </button>
-          <button className="bg-brand-red hover:bg-red-700 text-white px-4 py-2 rounded-md font-medium transition">
+          <button className="bg-black hover:bg-gray-800 text-white px-4 py-2 rounded-md font-medium transition">
             Criar conta
           </button>
         </div>
@@ -73,7 +74,7 @@ const Header: React.FC = () => {
               <Link to="/" className="p-2 text-brand-gray-600 hover:text-brand-red font-medium">
                 Minha Conta
               </Link>
-              <button className="bg-brand-red hover:bg-red-700 text-white px-4 py-2 rounded-md font-medium transition">
+              <button className="bg-black hover:bg-gray-800 text-white px-4 py-2 rounded-md font-medium transition">
                 Criar conta
               </button>
             </div>
