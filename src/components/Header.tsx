@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import { Search, User, Menu, X, Car } from 'lucide-react';
+import { Search, User, Menu, X } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const Header: React.FC = () => {
@@ -11,7 +11,11 @@ const Header: React.FC = () => {
       <div className="container mx-auto px-4 py-3 flex items-center justify-between">
         {/* Logo */}
         <Link to="/" className="flex items-center">
-          <Car size={24} className="mr-2 text-black" />
+          <img 
+            src="https://i.postimg.cc/QMF8bP2q/syscar.jpg" 
+            alt="SYS Car Logo" 
+            className="w-6 h-6 mr-2 rounded-full" 
+          />
           <span className="text-black font-bold text-2xl">SYS Car</span>
         </Link>
 
