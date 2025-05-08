@@ -7,7 +7,7 @@ const Footer: React.FC = () => {
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div>
-            <h3 className="text-xl font-bold mb-4">Sys Carl</h3>
+            <h3 className="text-xl font-bold mb-4">Sys Car</h3>
             <p className="text-brand-gray-200">
               Seu portal para compra e venda de veículos novos e seminovos com as melhores condições.
             </p>
