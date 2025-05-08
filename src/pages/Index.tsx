@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import Banner from '@/components/Banner';
@@ -7,52 +7,29 @@ import ActionButton from '@/components/ActionButton';
 import SearchFilter from '@/components/SearchFilter';
 import CarCard from '@/components/CarCard';
 import { Calculator, MessageSquare, Car } from 'lucide-react';
-
-// Dados simulados para os carros em destaque
-const featuredCars = [
-  {
-    id: 1,
-    imageUrl: 'https://i.postimg.cc/7LWDnMhm/Volkswagen-Gol-Highline-2023-53708009248-cropped.jpg',
-    brand: 'VOLKSWAGEN',
-    model: 'GOL',
-    year: '2020/2021',
-    price: 'R$ 58.900,00',
-    km: '45.000 km',
-    location: 'São Paulo, SP'
-  },
-  {
-    id: 2,
-    imageUrl: 'https://i.postimg.cc/3NMTP8gG/onix-rs-01.jpg',
-    brand: 'CHEVROLET',
-    model: 'ONIX',
-    year: '2019/2020',
-    price: 'R$ 62.500,00',
-    km: '38.000 km',
-    location: 'Rio de Janeiro, RJ'
-  },
-  {
-    id: 3,
-    imageUrl: 'https://i.postimg.cc/85fGKJrD/360-F-309590738-R34phqyy-Tl-Qtj-Zjfs-I2mcg-S3-LNfleocw.jpg',
-    brand: 'TOYOTA',
-    model: 'COROLLA',
-    year: '2022/2022',
-    price: 'R$ 122.900,00',
-    km: '15.000 km',
-    location: 'Belo Horizonte, MG'
-  },
-  {
-    id: 4,
-    imageUrl: 'https://i.postimg.cc/fb0q1x5H/111024-lancer02.jpg',
-    brand: 'MITSUBISHI',
-    model: 'LANCER',
-    year: '2013/2013',
-    price: 'R$ 62.900,00',
-    km: '120.000 km',
-    location: 'Curitiba, PR'
-  },
-];
+import { carsData, Car as CarType } from '@/data/carsData';
+import { toast } from "@/components/ui/use-toast";
 
 const Index: React.FC = () => {
+  const [filteredCars, setFilteredCars] = useState<CarType[]>(carsData);
+  
+  const handleFilterChange = (newFilteredCars: CarType[]) => {
+    setFilteredCars(newFilteredCars);
+    
+    if (newFilteredCars.length === 0) {
+      toast({
+        title: "Nenhum veículo encontrado",
+        description: "Tente ajustar os filtros para encontrar veículos.",
+        variant: "destructive",
+      });
+    } else if (newFilteredCars.length < carsData.length) {
+      toast({
+        title: `${newFilteredCars.length} veículos encontrados`,
+        description: "Filtragem concluída com sucesso.",
+      });
+    }
+  };
+
   return (
     <div className="min-h-screen flex flex-col bg-brand-gray-100">
       <Header />
@@ -66,7 +43,7 @@ const Index: React.FC = () => {
         
         {/* Filtro de Busca - Apenas desktop */}
         <div className="container mx-auto px-4 -mt-6 z-10 relative hidden md:block">
-          <SearchFilter />
+          <SearchFilter onFilterChange={handleFilterChange} allCars={carsData} />
         </div>
         
         {/* Seção de Ações Principais */}
@@ -88,25 +65,46 @@ const Index: React.FC = () => {
           
           {/* Filtro de Busca - Apenas mobile */}
           <div className="mt-8 md:hidden">
-            <SearchFilter />
+            <SearchFilter onFilterChange={handleFilterChange} allCars={carsData} />
           </div>
         </section>
         
         {/* Seção de Carros em Destaque */}
         <section className="container mx-auto px-4 py-8">
           <div className="flex items-center justify-between mb-6">
-            <h2 className="text-2xl font-bold text-brand-gray-700">O que está rolando</h2>
-            <a href="#" className="text-brand-red hover:underline font-medium">Ver todos</a>
+            <h2 className="text-2xl font-bold text-brand-gray-700">
+              {filteredCars.length === carsData.length 
+                ? "O que está rolando" 
+                : `Resultados da busca (${filteredCars.length})`}
+            </h2>
+            {filteredCars.length !== carsData.length && (
+              <button 
+                onClick={() => setFilteredCars(carsData)}
+                className="text-brand-red hover:underline font-medium"
+              >
+                Limpar filtros
+              </button>
+            )}
+            {filteredCars.length === carsData.length && (
+              <a href="#" className="text-brand-red hover:underline font-medium">Ver todos</a>
+            )}
           </div>
           
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {featuredCars.map(car => (
-              <CarCard 
-                key={car.id} 
-                {...car} 
-              />
-            ))}
-          </div>
+          {filteredCars.length > 0 ? (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+              {filteredCars.map(car => (
+                <CarCard 
+                  key={car.id} 
+                  {...car} 
+                />
+              ))}
+            </div>
+          ) : (
+            <div className="bg-white p-8 rounded-lg text-center">
+              <h3 className="text-xl text-brand-gray-600 mb-4">Nenhum veículo encontrado</h3>
+              <p className="text-brand-gray-500">Tente ajustar seus filtros para encontrar veículos disponíveis.</p>
+            </div>
+          )}
         </section>
         
         {/* Seção de Marcas Populares */}

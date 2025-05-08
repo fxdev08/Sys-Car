@@ -1,8 +1,14 @@
 
 import React, { useState } from 'react';
-import { Search } from 'lucide-react';
+import { Search, Filter } from 'lucide-react';
+import { Car } from '@/data/carsData';
 
-const SearchFilter: React.FC = () => {
+interface SearchFilterProps {
+  onFilterChange: (filteredCars: Car[]) => void;
+  allCars: Car[];
+}
+
+const SearchFilter: React.FC<SearchFilterProps> = ({ onFilterChange, allCars }) => {
   const [searchParams, setSearchParams] = useState({
     brand: '',
     model: '',
@@ -13,18 +19,62 @@ const SearchFilter: React.FC = () => {
 
   const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const { name, value } = e.target;
-    setSearchParams(prev => ({ ...prev, [name]: value }));
+    const newParams = { ...searchParams, [name]: value };
+    setSearchParams(newParams);
+    
+    // Applying filters
+    const filteredCars = filterCars(allCars, newParams);
+    onFilterChange(filteredCars);
+  };
+
+  const filterCars = (cars: Car[], filters: typeof searchParams) => {
+    return cars.filter(car => {
+      // Brand filter
+      if (filters.brand && car.brand.toLowerCase() !== filters.brand.toLowerCase()) {
+        return false;
+      }
+      
+      // Model filter
+      if (filters.model && car.model.toLowerCase() !== filters.model.toLowerCase()) {
+        return false;
+      }
+      
+      // Year filter
+      if (filters.year && !car.year.includes(filters.year)) {
+        return false;
+      }
+      
+      // Price range filter
+      if (filters.priceMin && car.priceValue && car.priceValue < Number(filters.priceMin)) {
+        return false;
+      }
+      
+      if (filters.priceMax && car.priceValue && car.priceValue > Number(filters.priceMax)) {
+        return false;
+      }
+      
+      return true;
+    });
   };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Implementar a busca
-    console.log('Buscando com os parâmetros:', searchParams);
+    // Apply all filters at once
+    const filteredCars = filterCars(allCars, searchParams);
+    onFilterChange(filteredCars);
   };
+
+  // Get unique brands, models and years from data for dropdowns
+  const uniqueBrands = [...new Set(allCars.map(car => car.brand))];
+  const uniqueModels = [...new Set(allCars.map(car => car.model))];
+  const uniqueYears = [...new Set(allCars.map(car => car.year))];
 
   return (
     <div className="bg-white rounded-lg custom-shadow p-4 md:p-6">
-      <h2 className="text-xl font-bold text-brand-gray-700 mb-4">Encontre seu veículo</h2>
+      <div className="flex items-center justify-between mb-4">
+        <h2 className="text-xl font-bold text-brand-gray-700">Encontre seu veículo</h2>
+        <Filter size={20} className="text-brand-gray-500" />
+      </div>
       
       <form onSubmit={handleSubmit}>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
@@ -40,12 +90,9 @@ const SearchFilter: React.FC = () => {
               className="w-full border border-brand-gray-200 rounded-md p-2 text-brand-gray-600 focus:outline-none focus:ring-2 focus:ring-brand-red"
             >
               <option value="">Todas as marcas</option>
-              <option value="fiat">Fiat</option>
-              <option value="volkswagen">Volkswagen</option>
-              <option value="chevrolet">Chevrolet</option>
-              <option value="ford">Ford</option>
-              <option value="toyota">Toyota</option>
-              <option value="byd">BYD</option>
+              {uniqueBrands.map(brand => (
+                <option key={brand} value={brand}>{brand}</option>
+              ))}
             </select>
           </div>
           
@@ -61,10 +108,9 @@ const SearchFilter: React.FC = () => {
               className="w-full border border-brand-gray-200 rounded-md p-2 text-brand-gray-600 focus:outline-none focus:ring-2 focus:ring-brand-red"
             >
               <option value="">Todos os modelos</option>
-              <option value="onix">Onix</option>
-              <option value="gol">Gol</option>
-              <option value="hilux">Hilux</option>
-              <option value="corolla">Corolla</option>
+              {uniqueModels.map(model => (
+                <option key={model} value={model}>{model}</option>
+              ))}
             </select>
           </div>
           
@@ -80,11 +126,9 @@ const SearchFilter: React.FC = () => {
               className="w-full border border-brand-gray-200 rounded-md p-2 text-brand-gray-600 focus:outline-none focus:ring-2 focus:ring-brand-red"
             >
               <option value="">Todos os anos</option>
-              <option value="2023">2023</option>
-              <option value="2022">2022</option>
-              <option value="2021">2021</option>
-              <option value="2020">2020</option>
-              <option value="2019">2019</option>
+              {uniqueYears.map(year => (
+                <option key={year} value={year}>{year}</option>
+              ))}
             </select>
           </div>
           
@@ -119,6 +163,7 @@ const SearchFilter: React.FC = () => {
                 <option value="60000">R$ 60.000</option>
                 <option value="80000">R$ 80.000</option>
                 <option value="100000">R$ 100.000</option>
+                <option value="150000">R$ 150.000</option>
               </select>
             </div>
           </div>
